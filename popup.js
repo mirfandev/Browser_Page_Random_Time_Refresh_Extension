@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const timerElement = document.getElementById('timer');
-    const refreshButton = document.getElementById('refreshButton');
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
 
     let interval;
     let countdown;
@@ -24,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTimer(countdown);
     }
 
+    function stopRefresh() {
+        clearInterval(interval);
+        timerElement.textContent = '00:00';
+    }
+
     function updateTimer(seconds) {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
@@ -42,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    refreshButton.addEventListener('click', function () {
-        clearInterval(interval);
+    startButton.addEventListener('click', function () {
         startRefresh();
-        alert("Please press the browser's refresh button manually after clicking this extension's refresh button.");
     });
 
-    startRefresh();
+    stopButton.addEventListener('click', function () {
+        stopRefresh();
+    });
 });

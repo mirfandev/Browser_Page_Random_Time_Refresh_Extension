@@ -9,7 +9,20 @@ body {
     margin-bottom: 10px;
 }
 
-#refreshButton {
+.startButton,
+.stopButton {
     padding: 10px;
     cursor: pointer;
+}
+
+.startButton {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+}
+
+.stopButton {
+    background-color: #f44336;
+    /* Red */
+    color: white;
 }
