@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Random Refresh Extension",
+    "version": "1.0",
+    "description": "Refresh the page at random intervals with a timer.",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "Click to refresh"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    }
+}
