@@ -7,7 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let countdown;
 
     function startRefresh() {
-        const randomInterval = Math.floor(Math.random() * (300000 - 180000 + 1)) + 180000; // Random interval between 3 to 5 minutes
+        const minRefreshTime = 300000; // 5 minutes in milliseconds
+        const maxRefreshTime = 600000; // 10 minutes in milliseconds
+        const minDistance = 180000;   // 3 minutes in milliseconds
+
+        let randomInterval;
+
+        // Generate random interval with a minimum distance of 3 minutes
+        do {
+            randomInterval = Math.floor(Math.random() * (maxRefreshTime - minRefreshTime + 1)) + minRefreshTime;
+        } while (Math.abs(randomInterval - getLastInterval()) < minDistance);
 
         countdown = randomInterval / 1000;
 
@@ -23,6 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 1000);
 
         updateTimer(countdown);
+
+        // Save the current interval for future comparison
+        saveLastInterval(randomInterval);
+    }
+
+    function getLastInterval() {
+        return parseInt(localStorage.getItem('lastInterval')) || 0;
+    }
+
+    function saveLastInterval(interval) {
+        localStorage.setItem('lastInterval', interval);
     }
 
     function stopRefresh() {
